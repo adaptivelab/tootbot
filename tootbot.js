@@ -2,7 +2,8 @@
 
 var fs = require( 'fs' ),
     _ = require( 'underscore' ),
-    program = require( 'commander' );
+    program = require( 'commander' ),
+    colors = require( 'colors' );
 
 var Tootbot,
     tootbot;
@@ -36,16 +37,21 @@ Tootbot.prototype = {
 
     askNextQuestion: function() {
         var step = this.currentStep(),
+            questionText,
             promptText;
 
+        questionText = step.question.split( '\n' );
+        questionText = [
+            questionText[0].green.underline,
+            questionText.slice( 1 ).join( '\n' )
+        ].join( '\n' );
+
+        console.log( '' );
+        console.log( questionText );
+
         if( step.answers.length === 0 ) {
-            console.log( '' );
-            console.log( step.question );
             process.exit();
         } else {
-            console.log( '' );
-            console.log( step.question );
-
             promptText = '';
             for( var i = 0; i < step.answers.length; i++ ) {
                 promptText += ( i > 0 ? ', ' : '' ) +
@@ -97,7 +103,8 @@ Tootbot.prototype = {
         if( nextQuestionId !== null ) {
             this.pointer = this.tutorial[ nextQuestionId ];
         } else {
-            console.log( '* Sorry, did not recognise answer "%s"', answer );
+            console.log( '' )
+            console.log( 'Sorry, did not recognise answer "%s"'.red, answer );
         }
 
         this.askNextQuestion();

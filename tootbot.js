@@ -49,8 +49,8 @@ Tootbot.prototype = {
             promptText = '';
             for( var i = 0; i < step.answers.length; i++ ) {
                 promptText += ( i > 0 ? ', ' : '' ) +
-                    '[' + ( i + 1 ) + '] ' +
-                    step.answers[ i ];
+                    step.answers[ i ] +
+                    ' [' + ( i + 1 ) + ']';
             }
             promptText += ': ';
 

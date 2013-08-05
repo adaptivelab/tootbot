@@ -1,6 +1,6 @@
 {
   "name": "tootbot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A text adventure game tutorial program",
   "main": "tootbot.js",
   "scripts": {
